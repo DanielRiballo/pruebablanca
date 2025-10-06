@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iniciar Sesión en SAFATEL</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: url('../imagenes/fondoiniciosesion.jpg') no-repeat center center fixed;
+            background-size: cover;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0;
+            position: relative;
+        }
+
+        .logo-container {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            width: 100px;
+            height: 100px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .logo-container img {
+            max-width: 70%;
+            max-height: 70%;
+        }
+
+        .card {
+            width: 30%;
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            background: rgba(255, 255, 255, 0.9);
+        }
+
+        .card-header {
+            background: linear-gradient(to right, #ff4500, #ff6500);
+            color: white;
+            font-size: 1.5rem;
+            text-align: center;
+            padding: 1rem;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+        }
+
+        .btn-primary {
+            background-color: #ff4500;
+            border: none;
+            width: 48%;
+            padding: 0.75rem;
+        }
+
+        .btn-primary:hover {
+            background-color: #ff6500;
+        }
+
+        .btn-secondary {
+            background-color: #f5f5f5;
+            color: black;
+            width: 48%;
+            padding: 0.75rem;
+        }
+
+        .btn-secondary:hover {
+            background-color: #e0e0e0;
+        }
+
+        .button-group {
+            display: flex;
+            justify-content: space-between;
+            gap: 4%;
+        }
+
+        .link-primary {
+            color: #ff4500;
+            cursor: pointer;
+        }
+
+        .link-primary:hover {
+            color: #ff6500;
+            text-decoration: none;
+        }
+
+        .error-message {
+            color: red;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="logo-container">
+        <img src="../imagenes/logosafatel.png" alt="Logo">
+    </div>
+
+    <div class="card">
+        <div class="card-header">Iniciar Sesión en SAFATEL</div>
+        <div class="card-body">
+            <form id="loginForm">
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" class="form-control" id="email" placeholder="">
+                    <div class="error-message" id="emailError"></div>
+                </div>
+                <div class="mb-3">
+                    <label for="password" class="form-label">Contraseña</label>
+                    <input type="password" class="form-control" id="password" placeholder="">
+                    <div class="error-message" id="passwordError"></div>
+                </div>
+                <div class="button-group">
+                    <button type="submit" class="btn btn-primary">Iniciar Sesión</button>
+                    <button type="button" class="btn btn-secondary" onclick="window.location.href='index.html'">Cancelar</button>
+                </div>
+            </form>
+        </div>
+        <div class="card-footer text-center">
+            <small>¿No tienes cuenta? <span class="link-primary" id="registerLink">Regístrate</span></small>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function (event) {
+            event.preventDefault();
+            
+            let valid = true;
+
+            const errorFields = document.querySelectorAll('.error-message');
+            errorFields.forEach(field => field.textContent = '');
+
+            const email = document.getElementById('email').value.trim();
+            const password = document.getElementById('password').value.trim();
+
+            if (email === '') {
+                valid = false;
+                document.getElementById('emailError').textContent = 'El correo electrónico es obligatorio.';
+            } else if (!/\S+@\S+\.\S+/.test(email)) {
+                valid = false;
+                document.getElementById('emailError').textContent = 'Introduce un correo electrónico válido.';
+            }
+            if (password === '') {
+                valid = false;
+                document.getElementById('passwordError').textContent = 'La contraseña es obligatoria.';
+            }
+
+            if (valid) {
+                window.location.href = 'paginaprincipal.html'; 
+            }
+        });
+
+        document.getElementById('registerLink').addEventListener('click', function () {
+            window.location.href = 'registro.html';
+        });
+    </script>
+</body>
+</html>

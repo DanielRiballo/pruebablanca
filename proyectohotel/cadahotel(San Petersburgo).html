@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SAFATEL San Petersburgo</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      background-color: #fdebd0; 
+    }
+    .hotel-title {
+      color: #8b4513; 
+    }
+    .rating i {
+      color: #f39c12; 
+    }
+    .reservation-box, .room-selection-box {
+      background-color: #fff;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      margin-top: 20px;
+    }
+    .service-icon {
+      color: #f39c12;
+      font-size: 1.5rem;
+      margin-right: 10px;
+    }
+    .carousel-item img {
+      width: 100%;
+      height: 500px;
+      object-fit: cover;
+    }
+    .image-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+    }
+    .image-grid img {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 5px;
+    }
+    .room-option {
+      margin-bottom: 15px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container my-5">
+    <div class="row mb-4">
+      <div class="col-lg-8">
+        <div id="carouselExample" class="carousel slide" data-bs-ride="carousel" data-bs-interval="5000">
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <img src="../imagenes/hotelsanpetersburgo(principal).jpg" class="d-block w-100 rounded" alt="Hotel exterior">
+            </div>
+            <div class="carousel-item">
+              <img src="../imagenes/hotelsanpetersburgo(habitación).jpg" class="d-block w-100 rounded" alt="Room">
+            </div>
+            <div class="carousel-item">
+              <img src="../imagenes/hotelsanpetersbugo(restaurante).jpg" class="d-block w-100 rounded" alt="Restaurant">
+            </div>
+            <div class="carousel-item">
+              <img src="../imagenes/hotelsanpetersburgo(recepción).jpg" class="d-block w-100 rounded" alt="Lobby">
+            </div>
+            <div class="carousel-item">
+              <img src="../imagenes/hotelsanpetersburgo(piscina).jpg" class="d-block w-100 rounded" alt="Pool">
+            </div>
+          </div>
+          <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
+        </div>
+      </div>
+      <div class="col-lg-4">
+        <div class="image-grid">
+          <img src="../imagenes/hotelsanpetersburgo(habitación).jpg" alt="Room">
+          <img src="../imagenes/hotelsanpetersbugo(restaurante).jpg" alt="Restaurant">
+          <img src="../imagenes/hotelsanpetersburgo(recepción).jpg" alt="Lobby">
+          <img src="../imagenes/hotelsanpetersburgo(piscina).jpg" alt="Pool">
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-8">
+        <h2 class="hotel-title fw-bold">SAFATEL San Petersburgo</h2>
+        <p><i class="bi bi-geo-alt-fill"></i> Nevsky Prospekt 22, 191186 San Petersburgo.</p>
+        <div class="rating mb-3">
+          <i class="bi bi-star-fill"></i>
+          <i class="bi bi-star-fill"></i>
+          <i class="bi bi-star-fill"></i>
+          <i class="bi bi-star-fill"></i>
+          <i class="bi bi-star-fill"></i>
+        </div>
+        <ul class="nav nav-tabs" id="hotelTab" role="tablist">
+          <li class="nav-item" role="presentation">
+            <button class="nav-link active" id="info-tab" data-bs-toggle="tab" data-bs-target="#info" type="button" role="tab" aria-controls="info" aria-selected="true">Información</button>
+          </li>
+          <li class="nav-item" role="presentation">
+            <button class="nav-link" id="services-tab" data-bs-toggle="tab" data-bs-target="#services" type="button" role="tab" aria-controls="services" aria-selected="false">Servicios</button>
+          </li>
+          <li class="nav-item" role="presentation">
+            <button class="nav-link" id="location-tab" data-bs-toggle="tab" data-bs-target="#location" type="button" role="tab" aria-controls="location" aria-selected="false">Ubicación</button>
+          </li>
+        </ul>
+        <div class="tab-content p-3 bg-white rounded-bottom">
+          <div class="tab-pane fade show active" id="info" role="tabpanel" aria-labelledby="info-tab">
+            Este hotel combina la elegancia moderna con la tradición gallega. 
+          </div>
+          <div class="tab-pane fade" id="services" role="tabpanel" aria-labelledby="services-tab">
+            <div class="row">
+              <div class="col-md-6">
+                <p><i class="bi bi-wifi service-icon"></i> Wi-Fi Gratuito</p>
+                <p><i class="bi bi-car-front service-icon"></i> Restaurante Estrella Michelin</p>
+                <p><i class="bi bi-clock service-icon"></i> Gimnasio 24/7</p>
+                <p><i class="bi bi-airplane service-icon"></i> Traslado al Aeropuerto</p>
+              </div>
+              <div class="col-md-6">
+                <p><i class="bi bi-droplet service-icon"></i> Spa de Lujo</p>
+                <p><i class="bi bi-water service-icon"></i> Piscina Infinity</p>
+                <p><i class="bi bi-door-open service-icon"></i> Servicio de Habitaciones 24h</p>
+              </div>
+            </div>
+          </div>
+          <div class="tab-pane fade" id="location" role="tabpanel" aria-labelledby="location-tab">
+            <div class="ratio ratio-16x9">
+              <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14117.133834456963!2d30.3056252685736!3d59.9340303748636!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x469631598d46e9a1%3A0x5b55f92828f6de42!2sWawelberg%20Hotel!5e1!3m2!1ses!2ses!4v1739374972780!5m2!1ses!2ses"
+                width="600" 
+                height="450" 
+                style="border:0;" 
+                allowfullscreen="" 
+                loading="lazy" 
+                referrerpolicy="no-referrer-when-downgrade">
+              </iframe>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-4">
+        <div class="reservation-box">
+          <h4 class="fw-bold text-center">Reservar Habitación</h4>
+          <p class="text-center">Selecciona tus fechas</p>
+          <input type="date" class="form-control mb-3">
+          <input type="date" class="form-control mb-3">
+        </div>
+
+        <div class="room-selection-box">
+          <h4 class="fw-bold text-center">Selecciona tu habitación</h4>
+          <form>
+            <div class="form-check room-option">
+              <input class="form-check-input" type="radio" name="roomType" id="standardRoom" value="Standard" checked>
+              <label class="form-check-label" for="standardRoom">
+                <strong>Habitación Standard - 220€/noche</strong><br>
+                Habitación confortable con vistas a la ciudad. Capacidad: 2 personas.
+              </label>
+            </div>
+            <div class="form-check room-option">
+              <input class="form-check-input" type="radio" name="roomType" id="deluxeSuite" value="Deluxe">
+              <label class="form-check-label" for="deluxeSuite">
+                <strong>Suite Deluxe - 350€/noche</strong><br>
+                Amplia suite con sala de estar separada. Capacidad: 3 personas.
+              </label>
+            </div>
+            <div class="form-check room-option">
+              <input class="form-check-input" type="radio" name="roomType" id="premiumSuite" value="Premium">
+              <label class="form-check-label" for="premiumSuite">
+                <strong>Suite Premium - 500€/noche</strong><br>
+                Nuestra mejor suite con todas las comodidades. Capacidad: 4 personas.
+              </label>
+            </div>
+            <button type="button" class="btn btn-success w-100 mt-3" id="continuarPago">Continuar a pago</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    document.getElementById('continuarPago').addEventListener('click', function(event) {
+      event.preventDefault(); 
+
+      window.location.href = '../.html/confimarreserva.html'; 
+    });
+  </script>
+</body>
+</html>

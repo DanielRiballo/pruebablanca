@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro en SAFATEL</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: url('../imagenes/fondoiniciosesion.jpg') no-repeat center center fixed;
+            background-size: cover;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0;
+        }
+        .card {
+            width: 35%;
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            background: rgba(255, 255, 255, 0.9);
+        }
+        .card-header {
+            background: linear-gradient(to right, #ff4500, #ff6500);
+            color: white;
+            font-size: 1.5rem;
+            text-align: center;
+            padding: 1rem;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+        }
+        .btn-primary {
+            background-color: #ff4500;
+            border: none;
+            width: 48%;
+            padding: 0.75rem;
+        }
+        .btn-primary:hover {
+            background-color: #ff6500;
+        }
+        .btn-secondary {
+            background-color: #f5f5f5;
+            color: black;
+            width: 48%;
+            padding: 0.75rem;
+        }
+        .btn-secondary:hover {
+            background-color: #e0e0e0;
+        }
+        .button-group {
+            display: flex;
+            justify-content: space-between;
+            gap: 4%;
+        }
+        .link-primary {
+            color: #ff4500;
+            cursor: pointer;
+        }
+        .link-primary:hover {
+            color: #ff6500;
+            text-decoration: none;
+        }
+        .logo {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            width: 70px;
+            height: auto;
+        }
+        .error-message {
+            color: red;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <img src="../imagenes/logosafatel.png" alt="Logo" class="logo">
+
+    <div class="card">
+        <div class="card-header">Registro en SAFATEL</div>
+        <div class="card-body">
+            <form id="registerForm">
+                <div class="mb-3">
+                    <label for="name" class="form-label">Nombre</label>
+                    <input type="text" class="form-control" id="name" placeholder="">
+                    <div class="error-message" id="nameError"></div>
+                </div>
+                <div class="mb-3">
+                    <label for="lastname" class="form-label">Apellidos</label>
+                    <input type="text" class="form-control" id="lastname" placeholder="">
+                    <div class="error-message" id="lastnameError"></div>
+                </div>
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" class="form-control" id="email" placeholder="">
+                    <div class="error-message" id="emailError"></div>
+                </div>
+                <div class="mb-3">
+                    <label for="password" class="form-label">Contraseña</label>
+                    <input type="password" class="form-control" id="password" placeholder="">
+                    <div class="error-message" id="passwordError"></div>
+                </div>
+                <div class="mb-3">
+                    <label for="confirm-password" class="form-label">Confirmar Contraseña</label>
+                    <input type="password" class="form-control" id="confirm-password" placeholder="">
+                    <div class="error-message" id="confirmPasswordError"></div>
+                </div>
+                <div class="button-group">
+                    <button type="submit" class="btn btn-primary">Registrarse</button>
+                    <button type="button" class="btn btn-secondary" onclick="window.location.href='iniciarsesion.html'">Cancelar</button>
+                </div>
+            </form>
+        </div>
+        <div class="card-footer text-center">
+            <small>¿Ya tienes cuenta? <span class="link-primary" id="loginLink">Inicia sesión</span></small>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.getElementById('registerForm').addEventListener('submit', function (event) {
+            event.preventDefault();
+            
+            let valid = true;
+
+            const errorFields = document.querySelectorAll('.error-message');
+            errorFields.forEach(field => field.textContent = '');
+
+            const name = document.getElementById('name').value.trim();
+            const lastname = document.getElementById('lastname').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const password = document.getElementById('password').value.trim();
+            const confirmPassword = document.getElementById('confirm-password').value.trim();
+
+            if (name === '') {
+                valid = false;
+                document.getElementById('nameError').textContent = 'El nombre es obligatorio.';
+            }
+            if (lastname === '') {
+                valid = false;
+                document.getElementById('lastnameError').textContent = 'Los apellidos son obligatorios.';
+            }
+            if (email === '') {
+                valid = false;
+                document.getElementById('emailError').textContent = 'El correo electrónico es obligatorio.';
+            } else if (!/\S+@\S+\.\S+/.test(email)) {
+                valid = false;
+                document.getElementById('emailError').textContent = 'Introduce un correo electrónico válido.';
+            }
+            if (password === '') {
+                valid = false;
+                document.getElementById('passwordError').textContent = 'La contraseña es obligatoria.';
+            } else if (password.length < 6) {
+                valid = false;
+                document.getElementById('passwordError').textContent = 'La contraseña debe tener al menos 6 caracteres.';
+            }
+            if (confirmPassword === '') {
+                valid = false;
+                document.getElementById('confirmPasswordError').textContent = 'Debes confirmar tu contraseña.';
+            } else if (confirmPassword !== password) {
+                valid = false;
+                document.getElementById('confirmPasswordError').textContent = 'Las contraseñas no coinciden.';
+            }
+
+            if (valid) {
+                window.location.href = 'iniciarsesion.html'; 
+            }
+        });
+
+        document.getElementById('loginLink').addEventListener('click', function () {
+            window.location.href = 'iniciarsesion.html';
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proceso de Pago</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-image: url('../imagenes/fondoparaconfirmarreserva.jpg');
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .payment-container {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            max-width: 500px;
+            width: 100%;
+            text-align: center;
+        }
+        .btn-toggle {
+            width: 100%;
+            margin-bottom: 15px;
+        }
+        .btn-selected {
+            background-color: #0d6efd;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+<div id="payment-method-container" class="payment-container">
+    <h2>Método de pago</h2>
+    <button class="btn btn-outline-secondary btn-toggle" id="creditCardBtn">Tarjeta de Crédito</button>
+    <button class="btn btn-outline-secondary btn-toggle" id="paypalBtn">PayPal</button>
+    <div id="price-info">
+        <p>Precio por noche: <span id="pricePerNight">350€</span></p>
+        <p>Número de noches: <span id="numNights">3</span></p>
+        <h4>Total: <span id="totalPrice">1050€</span></h4>
+    </div>
+    <button class="btn btn-primary" id="confirmBtn">Confirmar Reserva</button>
+</div>
+
+<div id="payment-form-container" class="payment-container" style="display: none;">
+    <h2>Información de Pago</h2>
+    <form id="paymentForm">
+        <div class="mb-3">
+            <label for="cardNumber" class="form-label">Número de Tarjeta</label>
+            <input type="text" id="cardNumber" class="form-control" placeholder="1234 5678 9012 3456" required>
+        </div>
+        <div class="mb-3">
+            <label for="cardName" class="form-label">Nombre en la Tarjeta</label>
+            <input type="text" id="cardName" class="form-control" placeholder="Nombre Apellidos" required>
+        </div>
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <label for="expiryDate" class="form-label">Fecha de Caducidad</label>
+                <input type="text" id="expiryDate" class="form-control" placeholder="MM/YY" required>
+            </div>
+            <div class="col-md-6 mb-3">
+                <label for="cvv" class="form-label">CVV</label>
+                <input type="text" id="cvv" class="form-control" placeholder="123" required>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-success">Pagar Ahora</button>
+    </form>
+</div>
+
+<div id="payment-confirmation-container" class="payment-container" style="display: none;">
+    <h2 class="text-success">¡Pago Confirmado!</h2>
+    <p>Su reserva ha sido confirmada y recibirá un email con los detalles.</p>
+    <p>Redirigiendo a la página principal en 5 segundos...</p>
+</div>
+
+<script>
+    const pricePerNight = 350;
+    const numNights = 3;
+    const totalPrice = pricePerNight * numNights;
+    
+    document.getElementById('pricePerNight').textContent = pricePerNight + '€';
+    document.getElementById('numNights').textContent = numNights;
+    document.getElementById('totalPrice').textContent = totalPrice + '€';
+
+    const creditCardBtn = document.getElementById('creditCardBtn');
+    const paypalBtn = document.getElementById('paypalBtn');
+    const confirmBtn = document.getElementById('confirmBtn');
+    const paymentFormContainer = document.getElementById('payment-form-container');
+    const paymentConfirmationContainer = document.getElementById('payment-confirmation-container');
+    const paymentMethodContainer = document.getElementById('payment-method-container');
+
+    confirmBtn.addEventListener('click', () => {
+        paymentMethodContainer.style.display = 'none';
+        paymentFormContainer.style.display = 'block';
+    });
+
+    const paymentForm = document.getElementById('paymentForm');
+    paymentForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        paymentFormContainer.style.display = 'none';
+        paymentConfirmationContainer.style.display = 'block';
+
+        setTimeout(() => {
+            window.location.href = "../.html/paginaprincipal.html"; 
+        }, 5000);
+    });
+
+    creditCardBtn.addEventListener('click', () => {
+        creditCardBtn.classList.add('btn-selected');
+        paypalBtn.classList.remove('btn-selected');
+    });
+
+    paypalBtn.addEventListener('click', () => {
+        paypalBtn.classList.add('btn-selected');
+        creditCardBtn.classList.remove('btn-selected');
+    });
+</script>
+
+</body>
+</html>

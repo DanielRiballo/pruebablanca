@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>paginaprincipalSafatel</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+        }
+        .bg-image {
+            background-size: cover;
+            background-position: center;
+            height: 100%;
+            animation: changeBackground 50s infinite;
+        }
+        @keyframes changeBackground {
+            0% { background-image: url('../imagenes/imagen1fondo.jpg'); }
+            12.5% { background-image: url('../imagenes/imagen2fondo.jpg'); }
+            25% { background-image: url('../imagenes/imagen3fondo.jpg'); }
+            37.5% { background-image: url('../imagenes/imagen4fondo.jpg'); }
+            50% { background-image: url('../imagenes/imagen5fondo.jpg'); }
+            62.5% { background-image: url('../imagenes/imagen6fondo.jpg'); }
+            75% { background-image: url('../imagenes/imagen7fondo.jpg'); }
+            87.5% { background-image: url('../imagenes/imagen8fondo.jpg'); }
+            100% { background-image: url('../imagenes/imagen9fondo.jpg'); }
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+        }
+        .header .logo img {
+            height: 50px;
+        }
+        .search-box {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 30px;
+            border-radius: 10px;
+            margin-top: 40px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .main-title {
+            color: rgb(255, 255, 255);
+            text-align: center;
+            margin-top: 100px;
+        }
+        .hotel-section {
+            margin-top: 50px;
+            padding: 20px;
+        }
+        .hotel-card {
+            margin-bottom: 20px;
+        }
+        .card-img-top {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        .container-text-center {
+            margin: 50px auto;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-image">
+        <div class="header">
+            <div class="logo">
+                <img src="../imagenes/logosafatel.png" alt="Logo Safatel">
+            </div>
+            <div class="search-bar d-flex align-items-center w-50">
+                <input type="text" id="searchInput" class="form-control me-2" placeholder="Buscar hoteles...">
+                <button class="btn btn-orange" id="searchButton" style="background-color: #FF6600; color: white;">Buscar</button>
+            </div>
+            <div class="logo">
+                <img src="../imagenes/Usuario.png" alt="Otro Logo">
+            </div>
+        </div>
+
+        <div class="main-title">
+            <h1>Descubre el lujo SAFATEL</h1>
+            <p>Hoteles exclusivos en los destinos más deseados del mundo</p>
+        </div>
+
+        <div class="container d-flex justify-content-center">
+            <div class="search-box">
+                <form id="searchForm">
+                    <div class="row g-3">
+                        <div class="col-md-4">
+                            <label for="destino" class="form-label">Destino</label>
+                            <input type="text" class="form-control" id="destino" placeholder="¿A dónde viajas?">
+                        </div>
+                        <div class="col-md-4">
+                            <label for="fechas" class="form-label">Fechas</label>
+                            <input type="text" class="form-control" id="fechas" placeholder="Selecciona fechas">
+                        </div>
+                        <div class="col-md-4">
+                            <label for="huespedes" class="form-label">Huéspedes</label>
+                            <div class="dropdown">
+                                <button class="btn btn-secondary dropdown-toggle w-100" type="button" id="dropdownHuespedes" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Seleccionar
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownHuespedes">
+                                    <li>
+                                        <div class="px-3 py-2">
+                                            <label for="adultos">Adultos</label>
+                                            <input type="number" class="form-control" id="adultos" value="1" min="1">
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="px-3 py-2">
+                                            <label for="ninos">Niños</label>
+                                            <input type="number" class="form-control" id="ninos" value="0" min="0">
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="px-3 py-2">
+                                            <label for="habitaciones">Habitaciones</label>
+                                            <input type="number" class="form-control" id="habitaciones" value="1" min="1">
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-check mt-3">
+                        <input class="form-check-input" type="checkbox" id="transporte">
+                        <label class="form-check-label" for="transporte">
+                            Necesito transporte desde el aeropuerto/estación
+                        </label>
+                    </div>
+                    <button type="submit" class="btn btn-dark mt-3 w-100">Buscar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="hotel-section container">
+        <h2 class="text-center mb-4">Nuestros Hoteles</h2>
+        <div class="row" id="hotelList">
+            <div class="col-md-4 hotel-card" data-name="SAFATEL Madrid Gran Vía" data-destino="Madrid">
+                <div class="card">
+                    <img src="../imagenes/hotelmadrid.jpg" class="card-img-top" alt="Madrid">
+                    <div class="card-body">
+                        <h5 class="card-title">SAFATEL Madrid Gran Vía</h5>
+                        <p class="card-text">Calle Gran Vía 45, 28013 Madrid. Ubicado en el corazón de Madrid, en la emblemática Gran Vía.</p>
+                        <p><strong>Desde 220€/noche</strong></p>
+                        <a href="../.html/cadahotel(madrid).html" class="btn btn-primary">Ver Hotel</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 hotel-card" data-name="SAFATEL Vigo" data-destino="Vigo">
+                <div class="card">
+                    <img src="../imagenes/hotelvigo.jpg" class="card-img-top" alt="Vigo">
+                    <div class="card-body">
+                        <h5 class="card-title">SAFATEL Vigo</h5>
+                        <p class="card-text">Este hotel combina la elegancia moderna con la tradición gallega. Rúa do Príncipe 12, 36202, Vigo.</p>
+                        <p><strong>Desde 180€/noche</strong></p>
+                        <a href="../.html/cadahotel(vigo).html" class="btn btn-primary">Ver Hotel</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 hotel-card" data-name="SAFATEL Moscú" data-destino="Moscú">
+                <div class="card">
+                    <img src="../imagenes/Hotel-moscu.jpg" class="card-img-top" alt="Moscú">
+                    <div class="card-body">
+                        <h5 class="card-title">SAFATEL Moscú</h5>
+                        <p class="card-text">En el corazón de Moscú, a pasos de la Plaza Roja. Tverskaya Ulitsa 3, 125009 Moscú.</p>
+                        <p><strong>Desde 300€/noche</strong></p>
+                        <a href="../.html/cadahotel(Moscú).html" class="btn btn-primary">Ver Hotel</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 hotel-card" data-name="SAFATEL San Petersburgo" data-destino="San Petersburgo">
+                <div class="card">
+                    <img src="../imagenes/hotelSan Petersburgo.jpg" class="card-img-top" alt="San Petersburgo">
+                    <div class="card-body">
+                        <h5 class="card-title">SAFATEL San Petersburgo</h5>
+                        <p class="card-text">Ubicado en la emblemática Nevsky Prospekt. Nevsky Prospekt 22, 191186 San Petersburgo.</p>
+                        <p><strong>Desde 270€/noche</strong></p>
+                        <a href="../.html/cadahotel(San Petersburgo).html" class="btn btn-primary">Ver Hotel</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 hotel-card" data-name="SAFATEL Sídney" data-destino="Sídney">
+                <div class="card">
+                    <img src="../imagenes/hotelSídney.jpg" class="card-img-top" alt="Sídney">
+                    <div class="card-body">
+                        <h5 class="card-title">SAFATEL Sídney</h5>
+                        <p class="card-text">Situado en el vibrante distrito financiero de Sídney. 200 George St, Sídney NSW 2000, Australia.</p>
+                        <p><strong>Desde 250€/noche</strong></p>
+                        <a href="../.html/cadahotel(Sídney).html" class="btn btn-primary">Ver Hotel</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 hotel-card" data-name="SAFATEL Melbourne" data-destino="Melbourne">
+                <div class="card">
+                    <img src="../imagenes/HotelMelbourne.jpg" class="card-img-top" alt="Melbourne">
+                    <div class="card-body">
+                        <h5 class="card-title">SAFATEL Melbourne</h5>
+                        <p class="card-text">Localizado en la icónica Collins Street. 123 Collins St, Melbourne VIC 3000, Australia.</p>
+                        <p><strong>Desde 240€/noche</strong></p>
+                        <a href="../.html/cadahotel(Melbourne).html" class="btn btn-primary">Ver Hotel</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 hotel-card" data-name="SAFATEL París" data-destino="París">
+                <div class="card">
+                    <img src="../imagenes/hotelparis.jpg" class="card-img-top" alt="París">
+                    <div class="card-body">
+                        <h5 class="card-title">SAFATEL París</h5>
+                        <p class="card-text">10 Avenue des Champs-Élysées 75008 París, Francia.</p>
+                        <p><strong>Desde 260€/noche</strong></p>
+                        <a href="../.html/cadahotel(París).html" class="btn btn-primary">Ver Hotel</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 hotel-card" data-name="SAFATEL Roma" data-destino="Roma">
+                <div class="card">
+                    <img src="../imagenes/hotelroma_.jpg" class="card-img-top" alt="Roma">
+                    <div class="card-body">
+                        <h5 class="card-title">SAFATEL Roma</h5>
+                        <p class="card-text">Via Veneto 50, 00187 Roma RM, Italia.</p>
+                        <p><strong>Desde 220€/noche</strong></p>
+                        <a href="../.html/cadahotel(Roma).html" class="btn btn-primary">Ver Hotel</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 hotel-card" data-name="SAFATEL Punta Cana" data-destino="Punta Cana">
+                <div class="card">
+                    <div class="position-relative">
+                        <img src="../imagenes/hotelPunta Cana.jpg" class="card-img-top" alt="Punta Cana">
+                        <div class="position-absolute top-0 start-0 bg-warning text-dark px-2 py-1 small" style="border-radius: 0 0 5px 0;">Nueva Apertura</div>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">SAFATEL Punta Cana</h5>
+                        <p class="card-text">Punta Cana 23000, República Dominicana.</p>
+                        <p><strong>Desde 270€/noche</strong></p>
+                        <a href="../.html/cadahotel(Punta Cana).html" class="btn btn-primary">Ver Hotel</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 hotel-card" data-name="SAFATEL Puerto Rico" data-destino="Puerto Rico">
+                <div class="card">
+                    <div class="position-relative">
+                        <img src="../imagenes/hotelpuertorico.jpg" class="card-img-top" alt="Puerto Rico">
+                        <div class="position-absolute top-0 start-0 bg-warning text-dark px-2 py-1 small" style="border-radius: 0 0 5px 0;">Nueva Apertura</div>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">SAFATEL Puerto Rico</h5>
+                        <p class="card-text">Avenida Ashford 1369, San Juan, 00907, Puerto Rico.</p>
+                        <p><strong>Desde 210€/noche</strong></p>
+                        <a href="../.html/cadahotel(Puerto Rico).html" class="btn btn-primary">Ver Hotel</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+    <script>
+        $(function() {
+            $("#fechas").datepicker({
+                dateFormat: "dd/mm/yy",
+                minDate: 0,
+                numberOfMonths: 2,
+                showButtonPanel: true,
+                onSelect: function(selectedDate) {
+                    const fechaInicio = $("#fechas").datepicker("getDate");
+                    const fechaFin = new Date(fechaInicio);
+                    fechaFin.setDate(fechaFin.getDate() + 7); 
+                    $("#fechas").datepicker("setDate", [fechaInicio, fechaFin]);
+                }
+            });
+        });
+
+        document.getElementById('searchButton').addEventListener('click', function() {
+            const searchText = document.getElementById('searchInput').value.toLowerCase();
+            filterHotels(searchText);
+        });
+
+        document.getElementById('searchForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const destino = document.getElementById('destino').value.toLowerCase();
+            filterHotels(destino);
+        });
+
+        function filterHotels(searchText) {
+            const hotels = document.querySelectorAll('.hotel-card');
+            hotels.forEach(hotel => {
+                const name = hotel.getAttribute('data-name').toLowerCase();
+                const destino = hotel.getAttribute('data-destino').toLowerCase();
+                if (name.includes(searchText) || destino.includes(searchText)) {
+                    hotel.style.display = 'block';
+                } else {
+                    hotel.style.display = 'none';
+                }
+            });
+        }
+    </script>
+</body>
+</html>
